@@ -1,0 +1,125 @@
+.nav-link{
+    color: #d7d7d7;
+    font-size: 1.2rem
+}
+.nav-link:hover{
+    color: #d17128
+}
+.navbar-brand {
+  width:150px;
+  font-size: 24px;
+}
+.navbar-brand img {
+  height: 50px;
+  /* put value of image height as your need */
+  float: left;
+  margin-right: 7px;
+}
+
+.cardLink{
+    color: black;
+    font-weight: 500;
+}
+
+.cardLink:hover{
+    color: #114b7c
+}
+
+.quotecard {
+  min-width: 300px;
+  max-width: 400px;
+  position: relative;
+  display: inline-block;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Scale up the card */
+.quotecard:hover {
+  transform: scale(1.02, 1.02);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+}
+
+.navbarButton {
+  box-shadow: none;
+  border-color:  transparent;
+  border: none;
+  background-color:  transparent;
+  color:  #000000;
+  font-size:  20px;
+  font-family: Cambria;
+  font-weight: normal;
+}
+
+.navbarButton:focus {
+  box-shadow: none;
+  border-color:  transparent;
+  border: none;
+  background-color:  transparent;
+  color:  #000000;
+  font-size:  20px;
+  font-family: Cambria;
+  font-weight:  bold;
+}
+
+.navbarButton:hover {
+  box-shadow: none;
+  border-color:  transparent;
+  border: none;
+  background-color:  transparent;
+  color:  #000000;
+  font-weight:  bold;
+}
+
+.navbarButton:active {
+  box-shadow: none;
+  border-color:  transparent;
+  border: none;
+  background-color:  transparent;
+  color:  #000000;
+  font-size:  20px;
+  font-family: Cambria;
+  font-weight: bold;
+}
+
+.navbarButtonS {
+  box-shadow: none;
+  border-color:  transparent;
+  border: none;
+  background-color:  transparent;
+  color:  #000000;
+  font-size:  20px;
+  font-family: Cambria;
+  font-weight: bold;
+}
+
+.navbarButtonS:focus {
+  box-shadow: none;
+  border-color:  transparent;
+  border: none;
+  background-color:  transparent;
+  color:  #000000;
+  font-size:  20px;
+  font-family: Cambria;
+  font-weight:  bold;
+}
+
+.navbarButtonS:hover {
+  box-shadow: none;
+  border-color:  transparent;
+  border: none;
+  background-color:  transparent;
+  color:  #000000;
+  font-weight:  bold;
+}
+
+.navbarButtonS:active {
+  box-shadow: none;
+  border-color:  transparent;
+  border: none;
+  background-color:  transparent;
+  color:  #000000;
+  font-size:  20px;
+  font-family: Cambria;
+  font-weight: bold;
+}
