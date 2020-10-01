@@ -47,6 +47,7 @@ class PageSimplevis(html.Div):
                             dcc.Loading(
                                 id="loading-tab1",
                                 type="circle",
+                                color='#343a40',
                                 children=html.Div(children=[], id="tab1-data-table")
                             ),
                         ],
@@ -120,6 +121,7 @@ class PageSimplevis(html.Div):
                                 dcc.Loading(
                                     id="loading-tab3",
                                     type="circle",
+                                    color='#343a40',
                                     children=html.Div(children=[], id="tab3-graph_tsne")
                                 ),
                             ],

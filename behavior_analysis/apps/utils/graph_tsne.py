@@ -108,9 +108,9 @@ class GraphTsne(dcc.Graph):
                         label='Pause',
                         method='animate',
                         args=[
-                            None,
+                            [None],
                             dict(
-                                frame=dict(duration=100, redraw=False),
+                                frame=dict(duration=0, redraw=False),
                                 transition=dict(duration=0),
                                 easing='linear',
                                 fromcurrent=True,
