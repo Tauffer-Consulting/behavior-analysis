@@ -31,20 +31,34 @@ class PageSimplevis(html.Div):
             children=dbc.Button("Load data", color='dark')
         )
 
-        self.data_table = DatatableComponent(parent_app=parent_app, id='simple-vis-datatable')
-
         self.profile_summary = html.Iframe(
             # src='static/output.html',
             id="iframe-profile-summary",
             style={"border": 0, "width": "100%", "height": "900px", "overflow": "auto"}
         )
 
-        self.tsne_vis = GraphTsne(parent_app=parent_app, id='simple-vis-tsne')
+        # Tabs
+        tab1_content = dbc.Card(
+            dbc.CardBody(
+                id='tab1',
+                children=[dbc.Row([
+                    dbc.Col(
+                        [
+                            dcc.Loading(
+                                id="loading-tab1",
+                                type="circle",
+                                children=html.Div(children=[], id="tab1-data-table")
+                            ),
+                        ],
+                    )
+                ], justify="center")],
+            ),
+        )
 
         @self.parent_app.callback(
             [
-                Output('simple-vis-datatable', 'children'),
-                Output('iframe-profile-summary', 'src')
+                Output('tab1-data-table', 'children'),
+                Output('iframe-profile-summary', 'src'),
             ],
             [Input('button-load-data', 'contents')],
         )
@@ -53,13 +67,13 @@ class PageSimplevis(html.Div):
                 # Read and decode content
                 content_type, content_string = content.split(',')
                 decoded = base64.b64decode(content_string)
-                df = pd.read_csv(io.StringIO(decoded.decode('utf-8')), index_col=0)
+                self.df = pd.read_csv(io.StringIO(decoded.decode('utf-8')), index_col=0)
 
                 # Make data table for tab 1
                 table = dash_table.DataTable(
                     id='table',
-                    columns=[{"name": i, "id": i, "hideable": True, "renamable": True} for i in df.columns],
-                    data=df.head(100).to_dict('records'),
+                    columns=[{"name": i, "id": i, "hideable": True, "renamable": True} for i in self.df.columns],
+                    data=self.df.head(100).to_dict('records'),
                     style_table={
                         'overflowX': 'auto', 'height': '300px', 'overflowY': 'auto',
                     },
@@ -74,23 +88,6 @@ class PageSimplevis(html.Div):
 
                 return [table, 'static/output.html']
             return [no_update, no_update]
-
-        # Tabs
-        tab1_content = dbc.Card(
-            dbc.CardBody(
-                id='tab1',
-                children=[dbc.Row([
-                    dbc.Col(
-                        [
-                            html.Div(
-                                children=[self.data_table],
-                                id="tab1-data-table",
-                            )
-                        ],
-                    )
-                ], justify="center")],
-            ),
-        )
 
         tab2_content = dbc.Card(
             dbc.CardBody(
@@ -114,13 +111,17 @@ class PageSimplevis(html.Div):
             dbc.CardBody(
                 id='tab3',
                 children=[
+                    dbc.Button("Run t-SNE", color='dark', id='button-run-tsne'),
+                    html.Br(),
+                    html.Br(),
                     dbc.Row([
                         dbc.Col(
                             [
-                                html.Div(
-                                    children=[self.tsne_vis],
-                                    id="tab3-graph_tsne",
-                                )
+                                dcc.Loading(
+                                    id="loading-tab3",
+                                    type="circle",
+                                    children=html.Div(children=[], id="tab3-graph_tsne")
+                                ),
                             ],
                         )
                     ], justify="center")
@@ -128,6 +129,17 @@ class PageSimplevis(html.Div):
             ),
         )
 
+        @self.parent_app.callback(
+            Output("tab3-graph_tsne", "children"),
+            [Input('button-run-tsne', "n_clicks")]
+        )
+        def function_run_tsne(n_clicks):
+            if n_clicks is not None:
+                self.tsne_vis = GraphTsne(parent_app=parent_app, df=self.df, id='simple-vis-tsne')
+                return [self.tsne_vis]
+            return no_update
+
+        # Tabs layout
         tabs = dbc.Tabs(
             [
                 dbc.Tab(tab1_content, label="Data table"),
