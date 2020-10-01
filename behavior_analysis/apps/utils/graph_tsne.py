@@ -75,11 +75,11 @@ class GraphTsne(dcc.Graph):
             {
                 'yanchor': 'top',
                 'xanchor': 'left',
-                'currentvalue': {'font': {'size': 16}, 'prefix': 'Frame: ', 'visible': True, 'xanchor': 'right'},
-                'transition': {'duration': 100.0, 'easing': 'linear'},
-                'pad': {'b': 10, 't': 50},
+                'currentvalue': {'visible': False},
+                'transition': {'duration': 0.0, 'easing': 'linear'},
+                'pad': {'b': 10, 't': 10},
                 'len': 0.9, 'x': 0.1, 'y': 0,
-                'steps': [{'args': [[k], {'frame': {'duration': 100.0, 'easing': 'linear', 'redraw': False},
+                'steps': [{'args': [None, {'frame': {'duration': 0.0, 'easing': 'linear', 'redraw': False},
                                           'transition': {'duration': 0, 'easing': 'linear'}}],
                            'label': k, 'method': 'animate'} for k in range(n_frames)]
             }
@@ -120,7 +120,7 @@ class GraphTsne(dcc.Graph):
                     )
                 ],
                 direction='left',
-                pad=dict(r=10, t=85),
+                pad=dict(r=10, t=10),
                 showactive=True, x=0.1, y=0, xanchor='right', yanchor='top'
             )
         ]
