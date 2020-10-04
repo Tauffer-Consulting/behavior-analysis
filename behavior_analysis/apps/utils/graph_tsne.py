@@ -2,6 +2,7 @@ import dash_core_components as dcc
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from sklearn.manifold import TSNE
+import umap
 import numpy as np
 import pandas as pd
 import random
@@ -29,8 +30,12 @@ class GraphTsne(dcc.Graph):
         cols = [c for c in df.columns if ('_x' in c or '_y' in c)]
         X = df[cols].to_numpy()
 
-        tsne = TSNE(n_components=2, init='pca')
-        Y = tsne.fit_transform(X)
+        # t-SNE
+        # tsne = TSNE(n_components=2, init='pca')
+        # Y = tsne.fit_transform(X)
+
+        # UMAP
+        Y = umap.UMAP().fit_transform(X)
 
         # Make figure
         fig = make_subplots(rows=1, cols=2)

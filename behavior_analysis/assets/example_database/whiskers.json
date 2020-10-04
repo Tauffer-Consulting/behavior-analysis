@@ -1,0 +1,38 @@
+{
+  "Experiment": [
+    {
+      "name": "whiskers",
+      "description": "Whiskers movement with head fixed"
+    }
+  ],
+
+  "Group": [
+    {
+      "name": "control",
+      "experiment": "whiskers"
+    },
+    {
+      "name": "lesion",
+      "experiment": "whiskers"
+    }
+  ],
+
+  "Subject": [
+    {
+      "group": "control",
+      "file": "5-12122019121523-0000DeepCut_resnet50_controlDec12shuffle1_200000.csv"
+    },
+    {
+      "group": "control",
+      "file": "5-12122019115744-0000DeepCut_resnet50_controlDec12shuffle1_200000.csv"
+    },
+    {
+      "group": "lesion",
+      "file": "5-11212019103856-0000DeepCut_resnet50_lesionNov24shuffle1_200000.csv"
+    },
+    {
+      "group": "lesion",
+      "file": "5-11222019105639-0000DeepCut_resnet50_lesionNov24shuffle1_200000.csv"
+    }
+  ]
+}

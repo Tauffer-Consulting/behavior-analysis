@@ -1,3 +1,4 @@
+from ..models import Experiment, Group, Subject
 import dash
 import dash_table
 import dash_html_components as html
@@ -7,6 +8,7 @@ from dash.dependencies import Input, Output, State
 from dash.dash import no_update
 from .utils.data_table import DatatableComponent
 from .utils.graph_tsne import GraphTsne
+from .utils.table_subjects import SubjectsTable
 from pandas_profiling import ProfileReport
 import pandas as pd
 import json
@@ -38,6 +40,10 @@ class PageSimplevis(html.Div):
         )
 
         # Tabs
+        subjects = Subject.query.all()
+        for s in subjects:
+            subjects_table = SubjectsTable(parent_app=parent_app, subjects=subjects)
+
         tab1_content = dbc.Card(
             dbc.CardBody(
                 id='tab1',
@@ -48,7 +54,7 @@ class PageSimplevis(html.Div):
                                 id="loading-tab1",
                                 type="circle",
                                 color='#343a40',
-                                children=html.Div(children=[], id="tab1-data-table")
+                                children=html.Div(children=[subjects_table], id="tab1-data-table")
                             ),
                         ],
                     )
