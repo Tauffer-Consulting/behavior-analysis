@@ -24,6 +24,7 @@ setup(
     include_package_data=True,
     install_requires=[
         'pandas', 'numpy', 'Flask', 'Flask-SQLAlchemy',
-        'dash', 'dash_bootstrap_components', 'dash-canvas', 'pandas-profiling'
+        'dash', 'dash_bootstrap_components', 'dash-canvas', 'pandas-profiling',
+        'umap-learn'
     ]
 )
